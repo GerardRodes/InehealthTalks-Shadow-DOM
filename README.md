@@ -1,4 +1,4 @@
-# inehealthtalks
+# Inehealthtalks
 ## Shadow DOM
 
 ### Talk points
