@@ -1,13 +1,21 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+const at = pathname => path.resolve(__dirname, pathname)
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, 'src/index.js')
+    app: at('src/index.js')
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: at('dist')
+  },
+  devServer: {
+    contentBase: at('dist'),
+    hot: true,
+    inline: true
   },
   mode: 'development',
   devtool: 'inline-source-map',
@@ -24,7 +32,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Shadow DOM - INEHEALTH TALKS',
-      template: path.resolve(__dirname, 'src/index.html')
-    })
+      template: at('src/index.html')
+    }),
+    new CopyWebpackPlugin([{
+      from: at('src/assets'),
+      to: 'assets'
+    }])
   ]
 }
