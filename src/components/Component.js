@@ -3,8 +3,13 @@ export default class Component extends HTMLElement {
   constructor () {
     super()
 
-    this.shadow = this.attachShadow({mode: 'open'})
+    this.shadowWrapper = document.createElement('span')
+    this.shadowWrapper.dataset.isShadow = true
+    this.shadow = this.shadowWrapper.attachShadow({mode: 'closed'})
+
     this._mount(this.render())
+
+    this.appendChild(this.shadowWrapper)
   }
 
   _mount (vNode) {
