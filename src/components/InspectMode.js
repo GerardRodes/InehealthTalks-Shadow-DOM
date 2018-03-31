@@ -1,46 +1,46 @@
 import Component from './Component.js'
-import '../assets/shadow-vision.css'
+import '../assets/inspect-mode.css'
 
-function insertShadowData (element) {
+function insertInspectData (element) {
   if (!element) {
     return
   }
 
   if (element.classList) {
-    element.classList.add('shadow')
+    element.classList.add('inspected')
   }
 
-  const shadowData = document.createElement('div')
+  const inspectData = document.createElement('div')
   const tagName = document.createElement('div')
 
-  shadowData.classList.add('shadow-data')
+  inspectData.classList.add('inspect-data')
   tagName.classList.add('tag-name')
   tagName.innerText = `<${element.tagName || element.nodeName} />`
 
-  shadowData.appendChild(tagName)
-  element.appendChild(shadowData)
+  inspectData.appendChild(tagName)
+  element.appendChild(inspectData)
 
   Array.from(element.children)
-    .filter(child => !child.classList.contains('shadow-data'))
+    .filter(child => !child.classList.contains('inspect-data'))
     .forEach(child => {
-      insertShadowData(child.dataset.isShadow ? child.shadowRoot : child)
+      insertInspectData(child.dataset.isShadow ? child.shadowRoot : child)
     })
 }
 
-function removeShadowData (element) {
-  element.classList.remove('shadow')
+function removeInspectData (element) {
+  element.classList.remove('inspected')
 
   Array.from(element.children)
     .forEach(child => {
-      if (child.classList.contains('shadow-data')) {
+      if (child.classList.contains('inspect-data')) {
         child.remove()
       } else {
-        removeShadowData(child)
+        removeInspectData(child)
       }
     })
 }
 
-export default class ShadowVision extends Component {
+export default class InspectMode extends Component {
   constructor () {
     super()
 
@@ -75,15 +75,15 @@ export default class ShadowVision extends Component {
     return {
       tag: 'button',
       attributes: {
-        innerText: 'Enable shadow vision',
+        innerText: 'Enable inspect mode',
         onclick () {
           this.data.enabled = !this.data.enabled
-          this.innerText = (this.data.enabled ? 'Disable' : 'Enabled') + ' shadow vision'
+          this.innerText = (this.data.enabled ? 'Disable' : 'Enabled') + ' inspect mode'
 
           if (this.data.enabled) {
-            insertShadowData(document.body)
+            insertInspectData(document.body)
           } else {
-            removeShadowData(document.body)
+            removeInspectData(document.body)
           }
         }
       },

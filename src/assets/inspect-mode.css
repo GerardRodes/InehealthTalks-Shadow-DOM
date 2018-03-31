@@ -2,18 +2,18 @@
   transition: 1s all ease-in-out;
 }
 
-shadow-vision {
+inspect-mode {
   display: block;
 }
 
-.shadow {
+.inspected {
   border: 4px solid;
   padding: 3rem 1rem 1rem;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   position: relative;
 }
 
-.shadow-data {
+.inspect-data {
   position: absolute;
   left: 0;
   top: 0;
@@ -28,27 +28,27 @@ shadow-vision {
   text-shadow: 1px 1px 2px black;
 }
 
-body.shadow {
+body.inspected {
   background-color: #03A9F4;
   border-color: #0288D1;
 }
 
-main.shadow {
+main.inspected {
   background-color: #4CAF50;
   border-color: #388E3C;
 }
 
-h1.shadow {
+h1.inspected {
   background-color: #FFA726;
   border-color: #FB8C00;
 }
 
-p.shadow {
+p.inspected {
   background-color: #f44336;
   border-color: #d32f2f;
 }
 
-shadow-vision.shadow {
+inspect-mode.inspected {
   background-color: #673AB7;
   border-color: #512DA8;
 }
