@@ -53,6 +53,12 @@ inspect-mode.inspected {
   border-color: #512DA8;
 }
 
+label.inspected {
+  margin-left: 10rem;
+  width: 200px;
+  display: inline-block;
+}
+
 button {
   background-color: red;
 }
